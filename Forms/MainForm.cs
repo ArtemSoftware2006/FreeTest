@@ -30,18 +30,30 @@ namespace FreeTest
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string fileName = tryOpenTestFile();
+
+            Test = loadTest(fileName);
+        }
+
+        private Test loadTest(string fileName)
+        {
+            return testProvider.Load(fileName.Split('.')[0]);
+        }
+
+        private string tryOpenTestFile()
+        {
             string fileName = showFileDialogForOpenTask();
 
-            if (fileName != null) 
+            if (fileName == null)
             {
                 MessageBox.Show(
-                    "Не удалось открыть файл", 
+                    "Не удалось открыть файл",
                     "Ошибка",
                     MessageBoxButtons.OK
                 );
             }
 
-            Test = testProvider.Load(fileName.Split('.')[0]);
+            return fileName;
         }
 
         private string showFileDialogForOpenTask()
@@ -53,44 +65,82 @@ namespace FreeTest
 
             openFileDialog.ShowDialog();
 
-            return openFileDialog.FileName;
+            return openFileDialog.SafeFileName;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Test is null && string.IsNullOrWhiteSpace(Test.Title))
-            {
-                MessageBox.Show(
-                    "Не удалось сохранить тест. Пустое название теста.",
-                    "Ошибка",
-                    MessageBoxButtons.OK
-                );
-            }
+            saveTest();
+        }
+        private void createQuestionPanel2_QuesionCreated(Question question)
+        { 
+            testBuilder.AddQuestion(question);
+        }
 
-            bool result = testProvider.Save(Test);
-
-            if (result)
+        private void TestNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TestNameTextBox.Text))
             {
-                MessageBox.Show(
-                    "Тест сохранён успешно.",
-                    "Успешно",
-                    MessageBoxButtons.OK
-                );
-            }
-            else
-            {
-                MessageBox.Show(
-                    "Тест не сохранён успешно.",
-                    "Ошибка",
-                    MessageBoxButtons.OK
-                );
+                testBuilder.AddTitle(TestNameTextBox.Text);
             }
         }
 
-        private void createQuestionPanel2_QuesionCreated(Question question)
+        private void TestAuthorTextBox_TextChanged(object sender, EventArgs e)
         {
-            testBuilder.AddQuestion(question);
-            MessageBox.Show(testBuilder.GetResult().Questions.Count.ToString());
+            if (!string.IsNullOrWhiteSpace(TestAuthorTextBox.Text))
+            {
+                testBuilder.AddAuthor(TestAuthorTextBox.Text);
+            }
+        }
+
+        private void SaveTestButton_Click(object sender, EventArgs e)
+        {
+            saveTest();
+        }
+
+        private void saveTest()
+        {
+            Test = testBuilder.GetResult();
+            if (string.IsNullOrWhiteSpace(Test.Title))
+            {
+                MessageBox.Show("Название теста не должно быть пустым", "Ошибка");
+                return;
+            }
+            else if (string.IsNullOrWhiteSpace(Test.Author))
+            {
+                MessageBox.Show("Автор теста должен быть указан", "Ошибка");
+                return;
+            }
+            else if (Test.Questions.Count == 0)
+            {
+                MessageBox.Show("В тесте должен быть хоть один вопрос.", "Ошибка");
+                return;
+            }
+
+            bool secusessSaved = testProvider.Save(Test);
+
+            if (!secusessSaved)
+            {
+                MessageBox.Show($"Название теста пустое или тест с таким именем уже существует\nИмя теста = {Test.Title}");
+            }
+            else
+            {
+                MessageBox.Show("Тест успешно сохранён.", "Успешно");
+            }
+        }
+
+        private void StartPassingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Test = testBuilder.GetResult();
+            PassingTestForm passingTestForm = new PassingTestForm(Test);
+            passingTestForm.ShowDialog();
+        }
+
+        private void открытьИПройтиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string fileName = tryOpenTestFile();
+            PassingTestForm passingTestForm = new PassingTestForm(loadTest(fileName));
+            passingTestForm.ShowDialog();
         }
     }
 }
