@@ -1,9 +1,7 @@
-﻿using FreeTest.Services.Extensions;
-using FreeTestManager.Core.Builders.QuestionBuilder;
+﻿using FreeTestManager.Core.Builders.QuestionBuilder;
 using FreeTestManager.Core.Builders.QuestionBuilder.Implementations;
 using FreeTestManager.Entities;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
@@ -26,6 +24,7 @@ namespace FreeTest.Controls
         private void AddQuestionButton_Click(object sender, EventArgs e)
         {
             AnswerCreatePanel answerCreatePanel = new AnswerCreatePanel();
+            answerCreatePanel.AnswerDeleted += answerCreatePanel_AnswerDeleted;
             questionBuilder.AddAnswer(answerCreatePanel.Answer);
 
             int answersCount = questionBuilder.Question.Answers.Count;
@@ -33,10 +32,19 @@ namespace FreeTest.Controls
 
             this.AnswersPanel.Controls.Add(answerCreatePanel);
 
+            TryAllowSaveQuestion(answersCount);
+            TryDisabledAddQuestion(answersCount);
+        }
+
+        private void TryAllowSaveQuestion(int answersCount)
+        {
             if (answersCount >= 2)
             {
                 this.SaveButton.Enabled = true;
             }
+        }
+        private void TryDisabledAddQuestion(int answersCount)
+        {
             if (answersCount >= 5)
             {
                 this.AddQuestionButton.Enabled = false;
@@ -69,18 +77,26 @@ namespace FreeTest.Controls
             {
                 Question question = questionBuilder.GetQuestion().Clone();
 
-                AnswersPanel.Controls.Clear();
-
                 QuesionCreated?.Invoke(question);
+                resetCreateQuestionPanel();
 
-                clearPanel();
+                incrementNumberQuestion();
             }
         }
 
-        private void clearPanel()
+        private void resetCreateQuestionPanel()
         {
+            AnswersPanel.Controls.Clear();
             questionBuilder.Clear();
             textBox.Text = "";
+            SaveButton.Enabled = false;
+        }
+
+        private void incrementNumberQuestion()
+        {
+            string text = this.CountQuestionLabel.Text;
+            int countPlusOne = int.Parse(text[text.Length - 1].ToString()) + 1;
+            this.CountQuestionLabel.Text = text.Substring(0, text.Length - 1) + countPlusOne;
         }
 
         private bool isAnswersEmpty()
@@ -96,6 +112,48 @@ namespace FreeTest.Controls
                     .GetQuestion()
                     .Answers
                     .Any(x => x.IsTrue);
+        }
+
+        public void answerCreatePanel_AnswerDeleted(Answer answer)
+        {
+            questionBuilder.DeleteAnswer(answer);
+            foreach (Control control in AnswersPanel.Controls)
+            {
+                if (control is AnswerCreatePanel)
+                {
+                    if ((control as AnswerCreatePanel).Answer == answer)
+                    {
+                        AnswersPanel.Controls.Remove(control);
+                        control.Dispose();
+                        moveAnswers();
+                        tryAllowAddQuestion(AnswersPanel.Controls.Count);
+                        tryDisabledSaveQuestion(AnswersPanel.Controls.Count);
+                    }
+                }
+            }
+        }
+
+        private void tryAllowAddQuestion(int answersCount)
+        {
+            if (answersCount < 5)
+            {
+                this.AddQuestionButton.Enabled = true;
+            }
+        }
+        private void tryDisabledSaveQuestion(int answersCount)
+        {
+            if (answersCount < 2)
+            {
+                this.SaveButton.Enabled = false;
+            }
+        }
+        private void moveAnswers()
+        {
+            for (int i = 0; i < AnswersPanel.Controls.Count; i++)
+            {
+                Control control = AnswersPanel.Controls[i];
+                control.Top = i * control.Size.Height;
+            }
         }
     }
 }

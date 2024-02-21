@@ -15,6 +15,9 @@ namespace FreeTest.Controls
         public delegate void AnswerCreateHandler(Answer answer);
         [Browsable(true)]
         public event AnswerCreateHandler AnswerChanged;
+        public delegate void AnswerDeleteHandler(Answer answer);
+        [Browsable(true)]
+        public event AnswerCreateHandler AnswerDeleted;
         public AnswerCreatePanel()
         {
             Size = new Size(WIDTH, HEIGTH);
@@ -48,6 +51,11 @@ namespace FreeTest.Controls
             }
 
             AnswerChanged?.Invoke(Answer);
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            AnswerDeleted?.Invoke(Answer);
         }
     }
 }

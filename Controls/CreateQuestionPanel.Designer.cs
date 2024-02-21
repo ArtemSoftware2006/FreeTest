@@ -35,6 +35,7 @@
             this.AnswersPanel = new System.Windows.Forms.Panel();
             this.AnswersLabel = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.CountQuestionLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TitleLabel
@@ -106,10 +107,22 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // CountQuestionLabel
+            // 
+            this.CountQuestionLabel.AutoSize = true;
+            this.CountQuestionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CountQuestionLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.CountQuestionLabel.Location = new System.Drawing.Point(358, 11);
+            this.CountQuestionLabel.Name = "CountQuestionLabel";
+            this.CountQuestionLabel.Size = new System.Drawing.Size(113, 25);
+            this.CountQuestionLabel.TabIndex = 7;
+            this.CountQuestionLabel.Text = "Вопрос №1";
+            // 
             // CreateQuestionPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CountQuestionLabel);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.AnswersLabel);
             this.Controls.Add(this.AnswersPanel);
@@ -118,7 +131,7 @@
             this.Controls.Add(this.QuestionTextLabel);
             this.Controls.Add(this.TitleLabel);
             this.Name = "CreateQuestionPanel";
-            this.Size = new System.Drawing.Size(762, 609);
+            this.Size = new System.Drawing.Size(759, 609);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,5 +146,6 @@
         private System.Windows.Forms.Panel AnswersPanel;
         private System.Windows.Forms.Label AnswersLabel;
         private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Label CountQuestionLabel;
     }
 }
