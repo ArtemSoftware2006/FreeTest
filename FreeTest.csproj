@@ -84,6 +84,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\AnswerCheckbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AnswerCheckbox.Designer.cs">
+      <DependentUpon>AnswerCheckbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AnswerChooseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AnswerChooseControl.Designer.cs">
+      <DependentUpon>AnswerChooseControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\AnswerCreatePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,9 +120,21 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PassingTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PassingTestForm.Designer.cs">
+      <DependentUpon>PassingTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Extensions\ObjectCopier.cs" />
+    <Compile Include="Services\PassingTestManager.cs" />
+    <EmbeddedResource Include="Controls\AnswerCheckbox.resx">
+      <DependentUpon>AnswerCheckbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AnswerChooseControl.resx">
+      <DependentUpon>AnswerChooseControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\AnswerCreatePanel.resx">
       <DependentUpon>AnswerCreatePanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PassingTestForm.resx">
+      <DependentUpon>PassingTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
