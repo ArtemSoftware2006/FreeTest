@@ -28,8 +28,23 @@ namespace FreeTest.Services
 
             return answer.IsTrue;
         }
+        public bool CheckMultiAnswers(Guid questionId, List<Guid> answerIds)
+        {
+            var question = findQuestion(questionId);
 
-        public List<KeyValuePair<Guid,bool>> CheckAnswers(Guid questionId, List<Guid> answerIds)
+            int actualCount = answerIds
+                .Select(x => new KeyValuePair<Guid, bool>(x, CheckAnswer(questionId, x)))
+                .Where(x => x.Value)
+                .Count();
+
+            int expectedCount = question
+                .Answers
+                .Where(x => x.IsTrue)
+                .Count();
+
+            return actualCount == expectedCount;
+        }
+        public List<KeyValuePair<Guid,bool>> CheckEverMultiAnswers(Guid questionId, List<Guid> answerIds)
         {
             var question = findQuestion(questionId);
 
@@ -53,6 +68,18 @@ namespace FreeTest.Services
         public List<Question> GetQuestions()
         {
             return test.Questions;
+        }
+
+        public List<KeyValuePair<Guid, bool>> ReportAnswers(Guid questionId, 
+            List<KeyValuePair<Guid, bool>> checkedAnswers )
+        {
+            var question = findQuestion(questionId);
+            var trueAnswers = question
+                .Answers
+                .Where(x => x.IsTrue)
+                .Select(x => new KeyValuePair<Guid, bool>(x.Id, x.IsTrue));
+
+            return checkedAnswers.Union(trueAnswers).ToList();
         }
     }
 }
