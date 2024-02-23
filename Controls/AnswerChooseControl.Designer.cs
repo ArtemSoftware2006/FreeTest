@@ -32,7 +32,6 @@
             this.NumberQuestionLabel = new System.Windows.Forms.Label();
             this.AnswersPanel = new System.Windows.Forms.Panel();
             this.TakeAnswerButton = new System.Windows.Forms.Button();
-            this.AnswersPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // QuestionTextLabel
@@ -58,9 +57,9 @@
             // AnswersPanel
             // 
             this.AnswersPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AnswersPanel.Location = new System.Drawing.Point(54, 156);
+            this.AnswersPanel.Location = new System.Drawing.Point(54, 119);
             this.AnswersPanel.Name = "AnswersPanel";
-            this.AnswersPanel.Size = new System.Drawing.Size(586, 320);
+            this.AnswersPanel.Size = new System.Drawing.Size(586, 357);
             this.AnswersPanel.TabIndex = 2;
             // 
             // TakeAnswerButton
@@ -85,7 +84,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AnswerChooseControl";
             this.Size = new System.Drawing.Size(698, 583);
-            this.AnswersPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,8 +95,5 @@
         private System.Windows.Forms.Label NumberQuestionLabel;
         private System.Windows.Forms.Panel AnswersPanel;
         private System.Windows.Forms.Button TakeAnswerButton;
-        private AnswerCheckbox answerCheckbox4;
-        private AnswerCheckbox answerCheckbox3;
-        private AnswerCheckbox answerCheckbox1;
     }
 }
