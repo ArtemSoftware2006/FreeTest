@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using FreeTestManager.Entities;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace FreeTest.Controls
 {
@@ -6,21 +9,25 @@ namespace FreeTest.Controls
     {
         public int NumberAnswer { get; set; }
         public string Text { get; set; }
-        public delegate void AnswerChooseHandler(bool isChecked);
+        public Guid AnswerId { get; set; }
+        public delegate void AnswerChooseHandler(KeyValuePair<Guid, bool> answerCheck);
         public event AnswerChooseHandler AnswerChoose;
-        public AnswerCheckbox(int numberAnswer, string text)
+
+        public AnswerCheckbox() { }
+        public AnswerCheckbox(int numberAnswer, Guid answerId, string text)
         {
             InitializeComponent();
             Text = text;
             NumberAnswer = numberAnswer;
+            AnswerId = answerId;
 
             NumberAnswerLabel.Text = NumberAnswer.ToString();
             checkBox.Text = Text;
         }
 
-        private void checkBox_CheckedChanged(object sender, System.EventArgs e)
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
-            AnswerChoose?.Invoke(checkBox.Checked);
+            AnswerChoose?.Invoke(new KeyValuePair<Guid, bool>(AnswerId, checkBox.Checked));
         }
     }
 }

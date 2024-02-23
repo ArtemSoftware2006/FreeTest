@@ -61,7 +61,7 @@
             this.Controls.Add(this.checkBox);
             this.Controls.Add(this.NumberAnswerLabel);
             this.Name = "AnswerCheckbox";
-            this.Size = new System.Drawing.Size(566, 79);
+            this.Size = new System.Drawing.Size(566, 40);
             this.ResumeLayout(false);
             this.PerformLayout();
 
