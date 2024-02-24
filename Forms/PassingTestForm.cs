@@ -22,7 +22,7 @@ namespace FreeTest.Forms
         {
             hideGreetingControls();
 
-            AnswerChooseControl answerChooseControl = new AnswerChooseControl(Test.Questions[0].Answers);
+            AnswerChooseControl answerChooseControl = new AnswerChooseControl(Test);
             answerChooseControl.Location = new Point(0, 0);
             this.Controls.Add(answerChooseControl);
             this.Size = new Size(this.Size.Width, this.Size.Height + 120);
