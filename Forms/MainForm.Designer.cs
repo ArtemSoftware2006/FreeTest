@@ -38,13 +38,15 @@
             this.StartPassingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьИПройтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createQuestionPanel2 = new FreeTest.Controls.CreateQuestionPanel();
+            this.createQuestionPanel = new FreeTest.Controls.CreateQuestionPanel();
             this.TestNameTextBox = new System.Windows.Forms.TextBox();
             this.SaveTestButton = new System.Windows.Forms.Button();
             this.HeaderTestFormLabel = new System.Windows.Forms.Label();
             this.TestNameLabel = new System.Windows.Forms.Label();
             this.TestAuthorLabel = new System.Windows.Forms.Label();
             this.TestAuthorTextBox = new System.Windows.Forms.TextBox();
+            this.ToNextButton = new System.Windows.Forms.Button();
+            this.ToPreviusButton = new System.Windows.Forms.Button();
             this.MainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,7 +123,7 @@
             this.открытьИПройтиToolStripMenuItem.Name = "открытьИПройтиToolStripMenuItem";
             this.открытьИПройтиToolStripMenuItem.Size = new System.Drawing.Size(241, 26);
             this.открытьИПройтиToolStripMenuItem.Text = "Открыть и пройти";
-            this.открытьИПройтиToolStripMenuItem.Click += new System.EventHandler(this.открытьИПройтиToolStripMenuItem_Click);
+            this.открытьИПройтиToolStripMenuItem.Click += new System.EventHandler(this.openAndPassingToolStripMenuItem_Click);
             // 
             // ReferenceToolStripMenuItem
             // 
@@ -130,17 +132,17 @@
             this.ReferenceToolStripMenuItem.Text = "Справка";
             this.ReferenceToolStripMenuItem.Click += new System.EventHandler(this.ReferenceToolStripMenuItem_Click);
             // 
-            // createQuestionPanel2
+            // createQuestionPanel
             // 
-            this.createQuestionPanel2.Location = new System.Drawing.Point(359, 31);
-            this.createQuestionPanel2.Name = "createQuestionPanel2";
-            this.createQuestionPanel2.Size = new System.Drawing.Size(756, 531);
-            this.createQuestionPanel2.TabIndex = 4;
-            this.createQuestionPanel2.QuesionCreated += new FreeTest.Controls.CreateQuestionPanel.QuestionCreatedHandler(this.createQuestionPanel2_QuesionCreated);
+            this.createQuestionPanel.Location = new System.Drawing.Point(359, 31);
+            this.createQuestionPanel.Name = "createQuestionPanel";
+            this.createQuestionPanel.Size = new System.Drawing.Size(756, 518);
+            this.createQuestionPanel.TabIndex = 4;
+            this.createQuestionPanel.QuesionCreated += new FreeTest.Controls.CreateQuestionPanel.QuestionCreatedHandler(this.createQuestionPanel2_QuesionCreated);
             // 
             // TestNameTextBox
             // 
-            this.TestNameTextBox.Location = new System.Drawing.Point(17, 181);
+            this.TestNameTextBox.Location = new System.Drawing.Point(26, 164);
             this.TestNameTextBox.Name = "TestNameTextBox";
             this.TestNameTextBox.Size = new System.Drawing.Size(327, 22);
             this.TestNameTextBox.TabIndex = 5;
@@ -148,7 +150,7 @@
             // 
             // SaveTestButton
             // 
-            this.SaveTestButton.Location = new System.Drawing.Point(17, 280);
+            this.SaveTestButton.Location = new System.Drawing.Point(26, 263);
             this.SaveTestButton.Name = "SaveTestButton";
             this.SaveTestButton.Size = new System.Drawing.Size(157, 24);
             this.SaveTestButton.TabIndex = 6;
@@ -160,7 +162,7 @@
             // 
             this.HeaderTestFormLabel.AutoSize = true;
             this.HeaderTestFormLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.HeaderTestFormLabel.Location = new System.Drawing.Point(12, 46);
+            this.HeaderTestFormLabel.Location = new System.Drawing.Point(21, 41);
             this.HeaderTestFormLabel.Name = "HeaderTestFormLabel";
             this.HeaderTestFormLabel.Size = new System.Drawing.Size(162, 25);
             this.HeaderTestFormLabel.TabIndex = 7;
@@ -169,7 +171,7 @@
             // TestNameLabel
             // 
             this.TestNameLabel.AutoSize = true;
-            this.TestNameLabel.Location = new System.Drawing.Point(14, 162);
+            this.TestNameLabel.Location = new System.Drawing.Point(23, 145);
             this.TestNameLabel.Name = "TestNameLabel";
             this.TestNameLabel.Size = new System.Drawing.Size(113, 16);
             this.TestNameLabel.TabIndex = 8;
@@ -178,7 +180,7 @@
             // TestAuthorLabel
             // 
             this.TestAuthorLabel.AutoSize = true;
-            this.TestAuthorLabel.Location = new System.Drawing.Point(14, 217);
+            this.TestAuthorLabel.Location = new System.Drawing.Point(23, 200);
             this.TestAuthorLabel.Name = "TestAuthorLabel";
             this.TestAuthorLabel.Size = new System.Drawing.Size(87, 16);
             this.TestAuthorLabel.TabIndex = 10;
@@ -186,11 +188,31 @@
             // 
             // TestAuthorTextBox
             // 
-            this.TestAuthorTextBox.Location = new System.Drawing.Point(17, 236);
+            this.TestAuthorTextBox.Location = new System.Drawing.Point(26, 219);
             this.TestAuthorTextBox.Name = "TestAuthorTextBox";
             this.TestAuthorTextBox.Size = new System.Drawing.Size(327, 22);
             this.TestAuthorTextBox.TabIndex = 9;
             this.TestAuthorTextBox.TextChanged += new System.EventHandler(this.TestAuthorTextBox_TextChanged);
+            // 
+            // ToNextButton
+            // 
+            this.ToNextButton.Location = new System.Drawing.Point(289, 491);
+            this.ToNextButton.Name = "ToNextButton";
+            this.ToNextButton.Size = new System.Drawing.Size(75, 23);
+            this.ToNextButton.TabIndex = 11;
+            this.ToNextButton.Text = ">>";
+            this.ToNextButton.UseVisualStyleBackColor = true;
+            this.ToNextButton.Click += new System.EventHandler(this.ToNextButton_Click);
+            // 
+            // ToPreviusButton
+            // 
+            this.ToPreviusButton.Location = new System.Drawing.Point(289, 521);
+            this.ToPreviusButton.Name = "ToPreviusButton";
+            this.ToPreviusButton.Size = new System.Drawing.Size(75, 23);
+            this.ToPreviusButton.TabIndex = 12;
+            this.ToPreviusButton.Text = "<<";
+            this.ToPreviusButton.UseVisualStyleBackColor = true;
+            this.ToPreviusButton.Click += new System.EventHandler(this.ToPreviusButton_Click);
             // 
             // MainForm
             // 
@@ -198,13 +220,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1115, 561);
+            this.Controls.Add(this.ToPreviusButton);
+            this.Controls.Add(this.ToNextButton);
             this.Controls.Add(this.TestAuthorLabel);
             this.Controls.Add(this.TestAuthorTextBox);
             this.Controls.Add(this.TestNameLabel);
             this.Controls.Add(this.HeaderTestFormLabel);
             this.Controls.Add(this.SaveTestButton);
             this.Controls.Add(this.TestNameTextBox);
-            this.Controls.Add(this.createQuestionPanel2);
+            this.Controls.Add(this.createQuestionPanel);
             this.Controls.Add(this.MainMenuStrip);
             this.Name = "MainForm";
             this.Text = "FreeTest";
@@ -226,7 +250,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StartEditingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StartPassingToolStripMenuItem;
-        private Controls.CreateQuestionPanel createQuestionPanel2;
+        private Controls.CreateQuestionPanel createQuestionPanel;
         private System.Windows.Forms.TextBox TestNameTextBox;
         private System.Windows.Forms.Button SaveTestButton;
         private System.Windows.Forms.Label HeaderTestFormLabel;
@@ -234,6 +258,8 @@
         private System.Windows.Forms.Label TestAuthorLabel;
         private System.Windows.Forms.TextBox TestAuthorTextBox;
         private System.Windows.Forms.ToolStripMenuItem открытьИПройтиToolStripMenuItem;
+        private System.Windows.Forms.Button ToNextButton;
+        private System.Windows.Forms.Button ToPreviusButton;
     }
 }
 
