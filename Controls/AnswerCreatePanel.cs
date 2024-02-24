@@ -25,6 +25,18 @@ namespace FreeTest.Controls
             InitializeComponent();
         }
 
+        public AnswerCreatePanel(Answer answer)
+        {
+            Size = new Size(WIDTH, HEIGTH);
+            Answer = answer;
+
+            InitializeComponent();
+
+            textBox.Text = answer.Text;
+            numericUpDown1.Value = (int)answer.Value == 0 ? 1 : (int)answer.Value;
+            IsTrueCheckBox.Checked = answer.IsTrue;
+        }
+
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             Answer.Text = textBox.Text;

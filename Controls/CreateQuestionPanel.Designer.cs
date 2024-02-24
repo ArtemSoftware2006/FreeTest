@@ -30,7 +30,7 @@
         {
             this.TitleLabel = new System.Windows.Forms.Label();
             this.QuestionTextLabel = new System.Windows.Forms.Label();
-            this.textBox = new System.Windows.Forms.TextBox();
+            this.QuestionTextTextBox = new System.Windows.Forms.TextBox();
             this.AddQuestionButton = new System.Windows.Forms.Button();
             this.AnswersPanel = new System.Windows.Forms.Panel();
             this.AnswersLabel = new System.Windows.Forms.Label();
@@ -59,13 +59,13 @@
             this.QuestionTextLabel.TabIndex = 1;
             this.QuestionTextLabel.Text = "Текст вопроса";
             // 
-            // textBox
+            // QuestionTextTextBox
             // 
-            this.textBox.Location = new System.Drawing.Point(17, 75);
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(340, 22);
-            this.textBox.TabIndex = 2;
-            this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.QuestionTextTextBox.Location = new System.Drawing.Point(17, 75);
+            this.QuestionTextTextBox.Name = "QuestionTextTextBox";
+            this.QuestionTextTextBox.Size = new System.Drawing.Size(340, 22);
+            this.QuestionTextTextBox.TabIndex = 2;
+            this.QuestionTextTextBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // AddQuestionButton
             // 
@@ -98,13 +98,16 @@
             // 
             // SaveButton
             // 
+            this.SaveButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.SaveButton.Enabled = false;
+            this.SaveButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.SaveButton.ForeColor = System.Drawing.SystemColors.Desktop;
             this.SaveButton.Location = new System.Drawing.Point(556, 75);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(187, 27);
             this.SaveButton.TabIndex = 6;
             this.SaveButton.Text = "Сохранить вопрос";
-            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.UseVisualStyleBackColor = false;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // CountQuestionLabel
@@ -127,11 +130,11 @@
             this.Controls.Add(this.AnswersLabel);
             this.Controls.Add(this.AnswersPanel);
             this.Controls.Add(this.AddQuestionButton);
-            this.Controls.Add(this.textBox);
+            this.Controls.Add(this.QuestionTextTextBox);
             this.Controls.Add(this.QuestionTextLabel);
             this.Controls.Add(this.TitleLabel);
             this.Name = "CreateQuestionPanel";
-            this.Size = new System.Drawing.Size(759, 609);
+            this.Size = new System.Drawing.Size(759, 522);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,7 +144,7 @@
 
         private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.Label QuestionTextLabel;
-        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.TextBox QuestionTextTextBox;
         private System.Windows.Forms.Button AddQuestionButton;
         private System.Windows.Forms.Panel AnswersPanel;
         private System.Windows.Forms.Label AnswersLabel;
